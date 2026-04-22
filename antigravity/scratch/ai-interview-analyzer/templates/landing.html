@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Interview Analyzer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .hero {
+            text-align: center;
+            padding: 4rem 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #818cf8, #c084fc, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        .feature-card {
+            padding: 2rem;
+            border-radius: 1rem;
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: left;
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <div style="font-weight: bold; font-size: 1.25rem; color: white;">AI<span style="color: #818cf8;">Interviewer</span></div>
+        <a href="{{ url_for('login') }}" class="btn">Login</a>
+    </div>
+
+    <div class="container">
+        <div class="hero">
+            <h1>Ace Your Next Interview with AI</h1>
+            <p>Practice with a hyper-realistic AI recruiter powered by Google Gemini. Get instant feedback on your answers, tone, and facial expressions to land your dream job.</p>
+            
+            <a href="{{ url_for('login') }}" class="btn" style="font-size: 1.25rem; padding: 1rem 2.5rem; border-radius: 2rem;">Start Practicing for Free</a>
+            
+            <div class="features">
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3 style="font-size: 1.25rem;">Gemini AI Powered</h3>
+                    <p style="color: #94a3b8; font-size: 0.9rem;">Dynamic questions tailored to your field and deeply analytical feedback on your answers.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">😊</div>
+                    <h3 style="font-size: 1.25rem;">Expression Analysis</h3>
+                    <p style="color: #94a3b8; font-size: 0.9rem;">Real-time webcam tracking to ensure you look confident, not nervous.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">🎙️</div>
+                    <h3 style="font-size: 1.25rem;">Voice Recognition</h3>
+                    <p style="color: #94a3b8; font-size: 0.9rem;">Speak naturally. The AI transcribes your voice and evaluates your tone seamlessly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

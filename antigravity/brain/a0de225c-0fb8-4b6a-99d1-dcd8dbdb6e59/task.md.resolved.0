@@ -1,0 +1,16 @@
+- [ ] Project Setup
+  - [ ] Initialize Vite + React project.
+  - [ ] Install dependencies (`react-router-dom`, `lucide-react`, `face-api.js`).
+  - [ ] Setup global CSS (`index.css`) with premium design tokens (colors, gradients, glassmorphism).
+- [ ] Core Components
+  - [ ] Create `Home.jsx` (Landing page & topic selection).
+  - [ ] Create `InterviewSession.jsx` (Webcam/mic access, question TTS, user STT, face expression tracking).
+  - [ ] Create `Results.jsx` (Detailed feedback display).
+- [ ] Services & Utilities
+  - [ ] Implement `aiService.js` (Mocked question generation & evaluation logic).
+  - [ ] Implement `expressionAnalyzer.js` (Initialize `face-api.js` models and process video frames).
+- [ ] Integration
+  - [ ] Wire up routing (`App.jsx`).
+  - [ ] Connect components and services.
+- [ ] Verification
+  - [ ] Test the full user flow (Start -> Interview -> Results).

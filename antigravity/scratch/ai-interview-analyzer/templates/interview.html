@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Session - AI Interview Analyzer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Load face-api.js from CDN -->
+    <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <h2>{{ topic.title() }} Interview</h2>
+            <div id="connection-status" class="status-badge">
+                <div class="status-indicator"></div>
+                Camera Offline
+            </div>
+        </div>
+
+        <div class="interview-layout">
+            <!-- Left Side: Video -->
+            <div class="glass-card" style="padding: 1rem;">
+                <div class="video-container">
+                    <video id="video" autoplay muted playsinline></video>
+                    <canvas id="canvas"></canvas>
+                </div>
+                
+                <div class="controls">
+                    <button id="start-btn" class="btn">Start Interview</button>
+                    <button id="next-btn" class="btn" style="display: none;">Next Question</button>
+                    <button id="finish-btn" class="btn" style="display: none; background: #10b981;">Finish Interview</button>
+                </div>
+            </div>
+
+            <!-- Right Side: AI Interaction -->
+            <div class="glass-card">
+                <h3 id="question-header">Ready to Start?</h3>
+                <p id="question-text" style="font-size: 1.125rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                    Ensure your camera and microphone are connected. Click "Start Interview" when you're ready.
+                </p>
+
+                <div style="margin-top: auto;">
+                    <div style="font-size: 0.875rem; color: #94a3b8; margin-bottom: 0.5rem; display: flex; justify-content: space-between;">
+                        <span>Your Answer</span>
+                        <span id="listening-indicator" style="color: #ef4444; font-size: 0.75rem;">Mic Off</span>
+                    </div>
+                    <div id="transcript-box" class="transcript-box">
+                        Your answer will appear here...
+                    </div>
+                </div>
+                
+                <div id="emotion-display" style="margin-top: 1rem; font-size: 0.875rem; color: #cbd5e1; text-align: center;">
+                    Detected Emotion: <span id="current-emotion" style="font-weight: bold; color: var(--primary);">None</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const TOPIC = "{{ topic }}";
+    </script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - AI Interview Analyzer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="login-container glass-card">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <h2>AI Interviewer</h2>
+            <p style="color: #94a3b8;">Login or create an account to start.</p>
+        </div>
+        
+        {% if google_enabled %}
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="{{ url_for('login_google') }}" class="btn btn-block" style="background: white; color: #1e293b; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google Logo" style="width: 20px; height: 20px;">
+                Sign in with Google
+            </a>
+        </div>
+        
+        <div style="margin: 2rem 0; display: flex; align-items: center; text-align: center; color: #94a3b8;">
+            <hr style="flex-grow: 1; border: none; border-top: 1px solid var(--border-color);">
+            <span style="padding: 0 1rem;">OR LOCAL TESTING</span>
+            <hr style="flex-grow: 1; border: none; border-top: 1px solid var(--border-color);">
+        </div>
+        {% else %}
+        <div style="padding: 1rem; background: rgba(239, 68, 68, 0.2); border: 1px solid #ef4444; border-radius: 0.5rem; margin-bottom: 2rem; color: #fca5a5; font-size: 0.875rem;">
+            Google Sign-In is not configured. Setup GOOGLE_CLIENT_ID in your .env file to enable it. Using local fallback.
+        </div>
+        {% endif %}
+        
+        <form method="POST" action="{{ url_for('login') }}">
+            <div class="form-group">
+                <label for="username">Username (Fallback)</label>
+                <input type="text" id="username" name="username" class="form-control" required placeholder="Enter your username">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-control" required placeholder="Enter your password">
+            </div>
+            
+            <button type="submit" class="btn btn-block">Sign In</button>
+        </form>
+    </div>
+</body>
+</html>

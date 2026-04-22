@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - AI Interview Analyzer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
+            <h2>Welcome, {{ session['user']['name'] }}</h2>
+            <a href="{{ url_for('logout') }}" class="btn" style="background: transparent; border: 1px solid var(--border-color);">Logout</a>
+        </div>
+
+        <div class="glass-card">
+            <h1 style="text-align: center;">Select Interview Topic</h1>
+            <p style="text-align: center; color: #94a3b8; margin-bottom: 2rem;">Choose a topic to begin your simulated AI interview.</p>
+            
+            <div class="dashboard-grid">
+                <a href="{{ url_for('interview', topic='python') }}" style="text-decoration: none; color: inherit;">
+                    <div class="glass-card topic-card">
+                        <h3>Python Developer</h3>
+                        <p style="color: #94a3b8; font-size: 0.875rem;">Test your Python programming skills, data structures, and algorithms.</p>
+                    </div>
+                </a>
+                
+                <a href="{{ url_for('interview', topic='javascript') }}" style="text-decoration: none; color: inherit;">
+                    <div class="glass-card topic-card">
+                        <h3>Frontend/JavaScript</h3>
+                        <p style="color: #94a3b8; font-size: 0.875rem;">Focus on web technologies, closures, event loop, and DOM.</p>
+                    </div>
+                </a>
+                
+                <a href="{{ url_for('interview', topic='general') }}" style="text-decoration: none; color: inherit;">
+                    <div class="glass-card topic-card">
+                        <h3>General HR</h3>
+                        <p style="color: #94a3b8; font-size: 0.875rem;">Behavioral questions, strengths/weaknesses, and cultural fit.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

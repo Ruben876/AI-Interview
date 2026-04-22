@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results - AI Interview Analyzer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <h2>Interview Results</h2>
+            <a href="{{ url_for('dashboard') }}" class="btn" style="background: transparent; border: 1px solid var(--border-color);">Back to Dashboard</a>
+        </div>
+
+        <div class="glass-card" style="text-align: center; margin-bottom: 2rem;">
+            <div class="score-circle">
+                <span class="score-value" id="score-val">--</span>
+            </div>
+            <h3>Overall Score</h3>
+            <p style="color: #94a3b8; max-width: 600px; margin: 1rem auto;" id="improvement-tips">Loading results...</p>
+        </div>
+
+        <div class="glass-card">
+            <h3>Detailed Feedback</h3>
+            <div id="feedback-list">
+                <!-- Feedback items populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const resultsData = localStorage.getItem('interviewResults');
+            if (!resultsData) {
+                document.getElementById('improvement-tips').textContent = "No recent interview data found.";
+                return;
+            }
+
+            const data = JSON.parse(resultsData);
+            
+            // Animate Score
+            const scoreVal = document.getElementById('score-val');
+            let currentScore = 0;
+            const targetScore = data.score;
+            const interval = setInterval(() => {
+                if (currentScore >= targetScore) {
+                    clearInterval(interval);
+                    scoreVal.textContent = targetScore;
+                } else {
+                    currentScore++;
+                    scoreVal.textContent = currentScore;
+                }
+            }, 20);
+
+            document.getElementById('improvement-tips').textContent = data.improvement_tips;
+
+            const feedbackList = document.getElementById('feedback-list');
+            feedbackList.innerHTML = '';
+            
+            data.detailed_feedback.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'feedback-item';
+                div.innerHTML = `
+                    <div style="font-weight: 600; margin-bottom: 0.5rem; color: #818cf8;">Q${index + 1}: ${item.question}</div>
+                    <div style="margin-bottom: 0.5rem; font-style: italic; color: #cbd5e1;">"${item.user_answer || '(No answer recorded)'}"</div>
+                    <div style="color: #f8fafc;"><strong>Feedback:</strong> ${item.feedback}</div>
+                `;
+                feedbackList.appendChild(div);
+            });
+        });
+    </script>
+</body>
+</html>
