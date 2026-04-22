@@ -280,5 +280,6 @@ def results():
 
 if __name__ == '__main__':
     # When using OAuth callback locally over HTTP, we need to bypass HTTPS requirements:
+    os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
